@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:SQLiteDemo.Models"
+             xmlns:searchHandlers="clr-namespace:SQLiteDemo.SearchHandlers"
+             xmlns:viewModels="clr-namespace:SQLiteDemo.ViewModels"
+             x:DataType="viewModels:PlanetListPageViewModel"
+             x:Class="SQLiteDemo.Views.PlanetListPage"
+             Title="Planet List">
+
+
+    <!-- Planets="{x:Static viewModels:PlanetListPageViewModel.PlanetsListForSearch}" -->
+    <!--
+    <Shell.SearchHandler>
+        <searchHandlers:PlanetSearchHandler 
+            Placeholder="Search Name"
+            ShowsResults="True"
+            QueryIcon="search"
+            ClearIcon="clear"
+            NavigationRoute="AddUpdatePlanetDetail"
+            Planets="{Binding PlanetsListForSearch}">
+            <searchHandlers:PlanetSearchHandler.ItemTemplate>
+                <DataTemplate x:DataType="models:PlanetModel">
+                    <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
+                        <Image Grid.Row="0" Grid.Column="0" Source="user" HeightRequest="35" WidthRequest="35" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding FullName}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </searchHandlers:PlanetSearchHandler.ItemTemplate>
+        </searchHandlers:PlanetSearchHandler>
+    </Shell.SearchHandler>
+    -->
+    <StackLayout Margin="10">
+        <Label  Text="Planet List" FontSize="28"/>
+        <Button Text="Add Planet" Command="{Binding AddUpdatePlanetCommand}" HorizontalOptions="EndAndExpand" />
+
+        <CollectionView ItemsSource="{Binding Planets}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:PlanetModel">
+                    <SwipeView>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItemView>
+                                    <VerticalStackLayout  BackgroundColor="LightBlue">
+                                        <Label Text="Edit" 
+                                               HorizontalTextAlignment="Center" 
+                                               VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" />
+                                    </VerticalStackLayout>
+                                </SwipeItemView>
+                                <SwipeItemView>
+                                    <VerticalStackLayout BackgroundColor="Red">
+                                        <Label Text="Delete" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White" />
+                                    </VerticalStackLayout>
+                                </SwipeItemView>
+                                <!--<SwipeItem Text="Edit" IconImageSource="dotnet_bot" BackgroundColor="LightBlue" 
+                                           CommandParameter="{Binding .}"
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:PlanetListPageViewModel}},Path=EditPlanetCommand}" />
+                                <SwipeItem Text="Delete" IconImageSource="dotnet_bot" BackgroundColor="Red"  CommandParameter="{Binding .}"
+                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:PlanetListPageViewModel}},Path=DeletePlanetCommand}" />-->
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Frame Margin="10" Padding="10">
+                            <VerticalStackLayout>
+                                <HorizontalStackLayout Spacing="10">
+                                    <Label Text="{Binding PlanetName}" FontSize="18" FontAttributes="Bold" />
+                                    <Label Text="{Binding PlanetDistance}" FontSize="18" />
+                                </HorizontalStackLayout>
+                                <Label Text="{Binding Atmosphere}" />
+                                <Label Text="{Binding Diameter}" />
+                            </VerticalStackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModels:PlanetListPageViewModel}},Path=DisplayActionCommand}"
+                                                  CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </SwipeView>
+                   
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

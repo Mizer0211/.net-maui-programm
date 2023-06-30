@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SQLiteDemo.Views.AddUpdatePlanetDetail"
+             Title="Add / Update Planet Details">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="SlateGray" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="10" Spacing="15">
+        <VerticalStackLayout>
+            <Label Text="PLanet Name"  />
+            <Entry Text="{Binding PlanetDetail.PlanetName}" Placeholder="Planet Name..." />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Distance From Earth" />
+            <Entry  Text="{Binding PlanetDetail.PlanetDistance}" Placeholder="Distance...." />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Atmosphere" />
+            <Entry Text="{Binding PlanetDetail.Atmosphere}" Placeholder="Atmosphere..." />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+        <VerticalStackLayout>
+            <Label Text="Diameter" />
+            <Entry Text="{Binding PlanetDetail.Diameter}" Placeholder="Planet diameter..." />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <Button Text="Save" Command="{Binding AddUpdatePlanetCommand}"/>
+    </StackLayout>
+</ContentPage>
